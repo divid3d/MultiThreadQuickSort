@@ -7,13 +7,13 @@ class MultiThreadQuickSort {
 
     private static final int N_THREADS = Runtime.getRuntime().availableProcessors();
     private static final int FALLBACK = 2;
-    private static Executor pool = Executors.newFixedThreadPool(N_THREADS);
+    private static Executor threadPool = Executors.newFixedThreadPool(N_THREADS);
 
 
     static <T extends Comparable<T>> void sortData(T[] input) {
 
         final AtomicInteger count = new AtomicInteger(1);
-        pool.execute(new QuickSortRunnable<>(input, 0, input.length - 1, count));
+        threadPool.execute(new QuickSortRunnable<>(input, 0, input.length - 1, count));
         try {
             synchronized (count) {
                 count.wait();
@@ -57,8 +57,8 @@ class MultiThreadQuickSort {
                     quicksort(storeIndex + 1, pRight);
                 } else {
                     count.getAndAdd(2);
-                    pool.execute(new QuickSortRunnable<>(array, pLeft, storeIndex - 1, count));
-                    pool.execute(new QuickSortRunnable<>(array, storeIndex + 1, pRight, count));
+                    threadPool.execute(new QuickSortRunnable<>(array, pLeft, storeIndex - 1, count));
+                    threadPool.execute(new QuickSortRunnable<>(array, storeIndex + 1, pRight, count));
                 }
             }
         }
@@ -77,12 +77,7 @@ class MultiThreadQuickSort {
             return storeIndex;
         }
 
-        /**
-         * Simple swap method.
-         *
-         * @param pLeft  The index of the first value to swap with the second value.
-         * @param pRight The index of the second value to swap with the first value.
-         */
+
         private void swap(T[] array, int pLeft, int pRight) {
             T temp = array[pLeft];
             array[pLeft] = array[pRight];

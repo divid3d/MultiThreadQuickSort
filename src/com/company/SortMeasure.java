@@ -10,13 +10,13 @@ public class SortMeasure {
     private boolean isSingleSortedCorrectly;
     private boolean isMultiSortedCorrectly;
     private boolean isArraySortedCorrectly;
-    private boolean isParallelSortedCorrecly;
-    private double itrerationExecutionTime;
+    private boolean isParallelSortedCorrectly;
+    private double iterationExecutionTime;
     private int averageOf;
 
     SortMeasure(double singleThreadSortTime, double multiThreadSortTime, double arraySortTime, double parallelSortTime
-            , int numberOfElements, boolean isSortedCorrectly, boolean isMultiSortedCorrectly, boolean isArraySortedCorrectly, boolean isParallelSortedCorrecly
-            , int averageOf, double itrerationExecutionTime) {
+            , int numberOfElements, boolean isSortedCorrectly, boolean isMultiSortedCorrectly, boolean isArraySortedCorrectly, boolean isParallelSortedCorrectly
+            , int averageOf, double iterationExecutionTime) {
         this.singleThreadSortTime = singleThreadSortTime;
         this.multiThreadSortTime = multiThreadSortTime;
         this.arraySortTime = arraySortTime;
@@ -25,9 +25,9 @@ public class SortMeasure {
         this.isSingleSortedCorrectly = isSortedCorrectly;
         this.isMultiSortedCorrectly = isMultiSortedCorrectly;
         this.isArraySortedCorrectly = isArraySortedCorrectly;
-        this.isParallelSortedCorrecly = isParallelSortedCorrecly;
+        this.isParallelSortedCorrectly = isParallelSortedCorrectly;
         this.averageOf = averageOf;
-        this.itrerationExecutionTime = itrerationExecutionTime;
+        this.iterationExecutionTime = iterationExecutionTime;
     }
 
     public int getNumberOfElements() {
@@ -51,22 +51,20 @@ public class SortMeasure {
     }
 
     public void printMeasure() {
-        System.out.println(toString());
+        System.out.println(toString() + "\tAverage of: " + this.averageOf + "\tExecution time: " + this.iterationExecutionTime);
     }
 
     @Override
     public String toString() {
 
-        return (this.numberOfElements + "\t") +
+        return (this.numberOfElements + ",") +
                 this.singleThreadSortTime + "," +
-                this.multiThreadSortTime + ","+
+                this.multiThreadSortTime + "," +
                 this.arraySortTime + "," +
-                this.parallelSortTime + "\t" +
+                this.parallelSortTime + "," +
                 this.isSingleSortedCorrectly + "," +
                 this.isMultiSortedCorrectly + "," +
                 this.isArraySortedCorrectly + "," +
-                this.isParallelSortedCorrecly + "\t" +
-                "(Average of: " + this.averageOf +
-                ". Execution time: "+this.itrerationExecutionTime+")";
+                this.isParallelSortedCorrectly;
     }
 }

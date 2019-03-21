@@ -4,7 +4,7 @@ package com.company;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class DataGenerator {
+class DataGenerator {
 
 
     static <T extends Comparable<T>> T[] generateIntegerData(int size, SortCase sortCase) {
@@ -89,15 +89,15 @@ public class DataGenerator {
     }
 
 
-    public static String generateString() {
+    private static String generateString() {
         return UUID.randomUUID().toString();
     }
 
-    public static Integer generateInteger() {
+    private static Integer generateInteger() {
         return ThreadLocalRandom.current().nextInt();
     }
 
-    public static Float generateDecimal() {
+    private static Float generateDecimal() {
         return ThreadLocalRandom.current().nextFloat();
     }
 
@@ -105,5 +105,11 @@ public class DataGenerator {
         TYPE_INTEGER,
         TYPE_DECIMAL,
         TYPE_STRING
+    }
+
+    public enum SortCase {
+        SORTED_RANDOM,
+        SORTED_REVERSED,
+        SORTED_INORDER
     }
 }

@@ -4,13 +4,11 @@ package com.company;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 class SortTester {
 
@@ -20,7 +18,7 @@ class SortTester {
     private final int REPEATS;
     private boolean showInfo = false;
     private boolean saveAsFile = false;
-    private SortCase sortCase = SortCase.SORTED_RANDOM;
+    private DataGenerator.SortCase sortCase = DataGenerator.SortCase.SORTED_RANDOM;
     private List<SortMeasure> sortMeasures = new ArrayList<>();
     private DataGenerator.DataType dataType;
 
@@ -31,7 +29,7 @@ class SortTester {
         this.REPEATS = repeats;
     }
 
-    public void setDataType(DataGenerator.DataType dataType) {
+    void setDataType(DataGenerator.DataType dataType) {
         this.dataType = dataType;
     }
 
@@ -49,7 +47,7 @@ class SortTester {
             final long[] singleThreadSortTimes = new long[REPEATS];
             final long[] multiThreadSortTimes = new long[REPEATS];
             final long[] arraySortTimes = new long[REPEATS];
-            final long[] pararellSortTimes = new long[REPEATS];
+            final long[] parallelSortTimes = new long[REPEATS];
             final boolean[] isSingleSortedCorrectly = new boolean[REPEATS];
             final boolean[] isMultiSortedCorrectly = new boolean[REPEATS];
             final boolean[] isArraySortedCorrectly = new boolean[REPEATS];
@@ -93,18 +91,18 @@ class SortTester {
 
                 long arraySortStartTime = System.nanoTime();
                 Arrays.sort(dataSetCpy2);
-                arraySortTimes[j] = (System.nanoTime() - multiThreadStartTime) / 1000000;
+                arraySortTimes[j] = (System.nanoTime() - arraySortStartTime) / 1000000;
                 isArraySortedCorrectly[j] = isSorted(dataSetCpy2);
 
                 long parallelSortStartTime = System.nanoTime();
                 Arrays.parallelSort(dataSetCpy3);
-                pararellSortTimes[j] = (System.nanoTime() - multiThreadStartTime) / 1000000;
+                parallelSortTimes[j] = (System.nanoTime() - parallelSortStartTime) / 1000000;
                 isParallelSortCorrectly[j] = isSorted(dataSetCpy3);
 
             }
-            double iterationExecuteTime = ((double)(System.nanoTime() - iterationTimeStart))/1000000;
+            double iterationExecuteTime = ((double) (System.nanoTime() - iterationTimeStart)) / 1000000;
 
-            sortMeasures.add(new SortMeasure(average(singleThreadSortTimes), average(multiThreadSortTimes), average(arraySortTimes), average(pararellSortTimes)
+            sortMeasures.add(new SortMeasure(average(singleThreadSortTimes), average(multiThreadSortTimes), average(arraySortTimes), average(parallelSortTimes)
                     , i, containsFalse(isSingleSortedCorrectly), containsFalse(isMultiSortedCorrectly)
                     , containsFalse(isArraySortedCorrectly), containsFalse(isParallelSortCorrectly), REPEATS, iterationExecuteTime));
             if (showInfo) {
@@ -126,8 +124,13 @@ class SortTester {
             dataToSave.append("number of Elements").append(",")
                     .append("single thread sort time").append(",")
                     .append("multi thread sort time").append(",")
+                    .append("arraySort  sort time").append(",")
+                    .append("parallelSort sort time").append(",")
                     .append("is single thread sorted correctly").append(",")
-                    .append("is multi thread sorted correctly")
+                    .append("is multi thread sorted correctly").append(",")
+                    .append("is arraySort sorted correctly").append(",")
+                    .append("is parallelSort sorted correctly").append(",")
+                    .append("Iteration Time")
                     .append("\n");
 
             for (SortMeasure measure : sortMeasures) {
@@ -161,27 +164,23 @@ class SortTester {
         return true;
     }
 
-    void setSortCase(SortCase sortCase) {
+    void setSortCase(DataGenerator.SortCase sortCase) {
         this.sortCase = sortCase;
     }
 
     private boolean containsFalse(boolean[] array) {
-
         for (boolean val : array) {
             if (!val)
                 return false;
         }
-
         return true;
     }
 
-    private double average(long[] vals) {
+    private double average(long[] values) {
         long sum = 0;
-
-        for (long val : vals) {
-            sum += val;
+        for (long value : values) {
+            sum += value;
         }
-        return (sum * 1.0) / vals.length;
+        return (sum * 1.0) / values.length;
     }
-
 }

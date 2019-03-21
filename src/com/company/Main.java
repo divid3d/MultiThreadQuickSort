@@ -5,11 +5,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SortTester sortTester = new SortTester(0, 2000000, 25000, 10);
+        SortTester sortTester = new SortTester(0, 6000000, 25000, 5);
         sortTester.setShowTerminalInfo(true);
-        sortTester.setSaveResultToFile(false);
-        sortTester.setDataType(DataGenerator.DataType.TYPE_DECIMAL);
-        sortTester.setSortCase(SortCase.SORTED_RANDOM);
+        sortTester.setSaveResultToFile(true);
+        sortTester.setDataType(DataGenerator.DataType.TYPE_INTEGER);
+        sortTester.setSortCase(DataGenerator.SortCase.SORTED_RANDOM);
         sortTester.startTest();
     }
 }
