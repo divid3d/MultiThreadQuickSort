@@ -20,3 +20,8 @@ Jeżeli chodzi o implementacje wielowątkową quicksorta to:
 * Znajduje się też tam AtomicInteger, który pozwala na monitorowanie liczby uruchomionych wątków
 * Tablica jest dzielona na podtablice (posortowane według elementu osiowego) i następnie wywoływany jest quicksort na podtablicach w kolejnych wątkach lub w tym samym w żależności od wartości synchronizowanej zmiennej **count** 
 * Na zmiennej atomicznej wykonywane są tylko operacje atomiczne takie jak **getAndDecrement()**, **getAndAdd()** i jest ona jednocześnie źródłem synchronizacji
+
+<p align="center">
+<img src="https://github.com/divid3d/MultiThreadQuickSort/blob/master/sort_time.png?raw=true" width="75%" height="75%">
+<img src="https://github.com/divid3d/MultiThreadQuickSort/blob/master/linear_regression.png?raw=true" width="75%" height="75%">
+</p>
