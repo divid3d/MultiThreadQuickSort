@@ -1,5 +1,8 @@
 package com.company;
 
+/**
+ * Class for storing information about sorting iterations
+ */
 public class SortMeasure {
 
     private double singleThreadSortTime;
@@ -14,6 +17,19 @@ public class SortMeasure {
     private double iterationExecutionTime;
     private int averageOf;
 
+    /**
+     * @param singleThreadSortTime      time of sorting by single thread implementation of  quicksort
+     * @param multiThreadSortTime       time of sorting by multi thread implementation of quicksort
+     * @param arraySortTime             time of sorting by Arrays.sort() Java method
+     * @param parallelSortTime          time of sorting by Arrays.parallelSort() Java method
+     * @param numberOfElements          number of elements to sort
+     * @param isSortedCorrectly         is single thread implementation of quicksort sorted correctly
+     * @param isMultiSortedCorrectly    is multi thread implementation of quicksort sorted correctly
+     * @param isArraySortedCorrectly    is Arrays.sort() sorted correctly
+     * @param isParallelSortedCorrectly is Arrays().parallelsort() sorted correctly
+     * @param averageOf                 Number of repeats
+     * @param iterationExecutionTime    Execution time of whole iteration for numberOfElements
+     */
     SortMeasure(double singleThreadSortTime, double multiThreadSortTime, double arraySortTime, double parallelSortTime
             , int numberOfElements, boolean isSortedCorrectly, boolean isMultiSortedCorrectly, boolean isArraySortedCorrectly, boolean isParallelSortedCorrectly
             , int averageOf, double iterationExecutionTime) {
@@ -54,6 +70,9 @@ public class SortMeasure {
         System.out.println(toString() + "\tAverage of: " + this.averageOf + "\tExecution time: " + this.iterationExecutionTime);
     }
 
+    /**
+     * @return SortMeasure object in String representation
+     */
     @Override
     public String toString() {
 
