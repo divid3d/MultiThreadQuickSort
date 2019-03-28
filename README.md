@@ -2,10 +2,10 @@
 
 W zasadzie działanie całego programu opiera się na testowaniu:
 
-* jednowątkowej tablicowej implementacji quicksorta
-* wielowątkowej tablicowej implemetacji quicksrota
-* metody Arrays.sort() biblioteki standardowej Javy wykorzystującej Dual-Pivot Quicksort i sortującej jednowątko
-* motody Arrays.parallelSort() wykorzystującej Merge sorta i sortującej wielowątkowo 
+* Jednowątkowej tablicowej implementacji quicksorta
+* Wielowątkowej tablicowej implemetacji quicksrota
+* Metody Arrays.sort() biblioteki standardowej Javy wykorzystującej Dual-Pivot Quicksort i sortującej jednowątko
+* Metody Arrays.parallelSort() wykorzystującej Mergesorta i sortującej wielowątkowo 
 
 Implementacja jedno i wielowątkowa QuickSorta zdolna jest do sortowania tablic typów generycznych rozszczerzających Comparable. Sortowanie może być testowane na liczbach całkowitych, zmiennoprzecinkowych albo Stringach. Dane testujące mogą być generowane jako posortowane rosnąco, malejąco lub w sposób pseudolosowy.
 Testowanie przebiega od pewnej początkowej liczby elementów, aż do końcowej liczby elementów co pewien krok. Testowanie na danej liczbie elementów jest powtarzane n razy.
